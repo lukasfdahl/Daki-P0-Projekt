@@ -36,6 +36,7 @@ def get_terrain(tile : np.ndarray):
     for y in range(rows):
         for x in range(colums):
             blue, green, red = tile[x, y]
+            #kør koden til at classificere pixels her
 
 if __name__ == "__main__":
     main()
