@@ -48,84 +48,49 @@ def get_terrain(tile : np.ndarray):
 
 
 
-def categorize_pixel(r : int, b : int, g : int) -> str:
-    light_green = (103, 161, 15)
-    dark_green = (23, 59, 11)
-    blue = (0, 83, 179)
-    black = (18, 16, 17)
-    yellow = (194, 175, 11)
-    brown = (70, 43, 0)
-    white = (154, 149, 145)
-    grey = (131, 125, 93) 
+def categorize_pixel(r: int, g: int, b: int) -> str:
+    light_green = [(103, 161, 15), (82, 149, 17)]
+    dark_green = [(23, 59, 11), (55, 89, 38), (41, 95, 20)]
+    blue = [(0, 83, 179)]
+    black = [(18, 16, 17)]
+    yellow = [(194, 175, 11), (196, 156, 7)]
+    brown = [(68, 45, 1)]
+    white = [(154, 149, 145)]
+    grey = [(131, 125, 93), (140, 128, 80), (119, 101, 53)]
 
     color_list = [light_green, dark_green, blue, black, yellow, brown, white, grey]
 
-    clossest_value = 9999
-    clossest_color = (0, 0, 0)
+    closest_value = 9999
+    closest_color = (0, 0, 0)
 
-    for color in color_list:
-        closeness = calculate_closeness((r, b, g), color)
-        if (closeness < clossest_value):
-            clossest_value = closeness
-            clossest_color = color
+    for color_collection in color_list:
 
-    
-    if (clossest_color == light_green):
+        for color in color_collection:
+            closeness = calculate_closeness((r, g, b), color)
+            if closeness < closest_value:
+                closest_value = closeness
+                closest_color = color_collection
+
+    if closest_color == light_green:
         return "Lys Grøn"
-    elif (clossest_color == dark_green):
+    elif closest_color == dark_green:
         return "Mørk Grøn"
-    elif (clossest_color == blue):
+    elif closest_color == blue:
         return 'Blå'
-    elif (clossest_color ==  black):
+    elif closest_color == black:
         return 'Sort'
-    elif (clossest_color == yellow):
+    elif closest_color == yellow:
         return 'Gul'
-    elif (clossest_color == brown):
+    elif closest_color == brown:
         return 'Brun'
-    elif (clossest_color == white):
+    elif closest_color == white:
         return 'Hvid'
-    elif (clossest_color == grey):
+    elif closest_color == grey:
         return 'Grå'
     else:
         return 'Ukendt'
 
-
-
-    if r < 50 and g < 50 and b < 50:
-        return 'Sort'
-    
-    # Hvid
-    elif r > 200 and g > 200 and b > 200:
-        return 'Hvid'
-
-    # Grå
-    elif abs(r - g) < 30 and abs(g - b) < 30 and abs(r - b) < 30:
-        return 'Grå'
-
-    # Gul
-    elif r > 200 and g > 200 and b < 100:
-        return 'Gul'
-
-    # Brun
-    elif r > 100 and g < 100 and b < 50:
-        return 'Brun'
-
-    # Lys Grøn 
-    elif g > 200 and r > 100 and b < 100:
-        return 'Lys Grøn'
-
-    # Mørk Grøn
-    elif g > 100 and r < 100 and b < 100:
-        return 'Mørk Grøn'
-
-    # Blå
-    elif b > 150 and r < 100 and g < 100:
-        return 'Blå'
-
-    # 'Ukendt'
-    else:
-        return 'Ukendt'
-    
+# Calculate the "closeness" of two colors
 def calculate_closeness(check_color : tuple[int, int, int], target_color : tuple[int, int, int]) -> float:
     red_closeness = exp_function(abs(check_color[0] - target_color[0]))
     blue_closeness = exp_function(abs(check_color[1] - target_color[1]))
@@ -134,7 +99,7 @@ def calculate_closeness(check_color : tuple[int, int, int], target_color : tuple
     return red_closeness + blue_closeness + green_closeness
 
 def exp_function(val : np.float64):
-    return (val ** 2) * 0.002 + 1
+    return val *((val ** 2) * 0.05 + 1)
 
 #light_green, dark_green, blue, black, yellow, brown, white, grey
 def get_pixel_percentage(pixel_values : list[str]):
