@@ -127,7 +127,6 @@ def get_pixel_percentage(pixel_values : list[str]):
     return light_green / count * 100, dark_green / count * 100, blue / count * 100, black / count * 100, yellow / count * 100, brown / count * 100, white / count * 100, grey / count * 100
 
 def get_tile_type(light_green : float, dark_green : float, blue : float, black : float, yellow : float, brown : float, white : float, grey : float) -> str:
-<<<<<<< HEAD
 
     if light_green >= 50.0 or light_green >= 30.0 and brown >= 20.0:
         return "Eng"
@@ -142,9 +141,6 @@ def get_tile_type(light_green : float, dark_green : float, blue : float, black :
     if grey >= 50.0 or grey >= 30.0 and brown >= 15.0:
         return "Sump"
 
-=======
-    print(f"light_green = {light_green} , dark_green = {dark_green}, blue = {blue} , black = {black}, yellow = {yellow}, brown = {brown}, white =  {white}, grey = {grey}")
->>>>>>> 7b9bd6721dda7ae051e5091f54df3c1099561559
     return "Unknown"
 
 
