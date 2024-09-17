@@ -122,7 +122,7 @@ def get_tile_type(light_green : float, dark_green : float, blue : float, black :
     if yellow >= 50.0 or yellow >= 30.0 and brown >= 15.0:
         return "Mark"
     if grey >= 50.0 or grey >= 30.0 and brown >= 15.0:
-        return "Brun"
+        return "Sump"
 
     return "Unknown"
 
