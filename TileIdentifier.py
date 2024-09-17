@@ -87,7 +87,7 @@ def categorize_pixel(r : int, b : int, g : int) -> str:
 #light_green, dark_green, blue, black, yellow, brown, white, grey
 def get_pixel_percentage(pixel_values : list[str]):
     count = len(pixel_values)
-    light_green, dark_green, blue, black, yellow, brown, white, grey = 0
+    light_green, dark_green, blue, black, yellow, brown, white, grey = 0, 0, 0, 0, 0, 0, 0, 0
     
     for pixel in pixel_values:
         if pixel == "Sort":
@@ -110,7 +110,7 @@ def get_pixel_percentage(pixel_values : list[str]):
     return light_green / count * 100, dark_green / count * 100, blue / count * 100, black / count * 100, yellow / count * 100, brown / count * 100, white / count * 100, grey / count * 100
 
 def get_tile_type(light_green : float, dark_green : float, blue : float, black : float, yellow : float, brown : float, white : float, grey : float) -> str:
-    print(light_green + " , " + dark_green + " , " +  blue)
+    print(str(light_green) + " , " + str(dark_green) + " , " +  str(blue))
     return "Unknown"
 
 
