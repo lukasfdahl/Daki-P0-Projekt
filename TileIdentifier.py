@@ -7,7 +7,7 @@ def main():
     print("+-------------------------------+")
     print("| King Domino points calculator |")
     print("+-------------------------------+")
-    image_path = r"C:\Users\lukas\Downloads\King Domino dataset\1.jpg"
+    image_path = r"C:\Users\lukas\Downloads\King Domino dataset\4.jpg"
     if not os.path.isfile(image_path):
         print("Image not found")
         return
@@ -49,14 +49,14 @@ def get_terrain(tile : np.ndarray):
 
 
 def categorize_pixel(r: int, g: int, b: int) -> str:
-    light_green = [(103, 161, 15), (82, 149, 17)]
-    dark_green = [(23, 59, 11), (55, 89, 38), (41, 95, 20)]
-    blue = [(0, 83, 179)]
+    light_green = [(103, 161, 15), (82, 149, 17), (59, 123, 11)]
+    dark_green = [(23, 59, 11), (55, 89, 38), (41, 95, 20), (31, 48, 29), (21, 35, 12)]
+    blue = [(0, 83, 179), (0, 55, 118)]
     black = [(18, 16, 17)]
-    yellow = [(194, 175, 11), (196, 156, 7)]
+    yellow = [(194, 175, 11), (196, 156, 7), (180, 157, 1), (186, 162, 4)]
     brown = [(68, 45, 1)]
     white = [(154, 149, 145)]
-    grey = [(131, 125, 93), (140, 128, 80), (119, 101, 53)]
+    grey = [(131, 125, 93), (140, 128, 80), (119, 101, 53), (122, 113, 84), (110, 97, 44)]
 
     color_list = [light_green, dark_green, blue, black, yellow, brown, white, grey]
 
@@ -128,18 +128,18 @@ def get_pixel_percentage(pixel_values : list[str]):
 
 def get_tile_type(light_green : float, dark_green : float, blue : float, black : float, yellow : float, brown : float, white : float, grey : float) -> str:
 
-    if light_green >= 50.0 or light_green >= 30.0 and brown >= 20.0:
+    if light_green >= 40.0 or light_green >= 20.0 and brown >= 10.0:
         return "Eng"
-    if dark_green >= 50.0 or dark_green>= 30.0 and brown >= 20.0:
-        return "Skov"
-    if blue >= 50.0 or blue >= 30.0 and brown >= 10.0 and yellow >= 10.0:
+    if blue >= 18.0:
         return "Hav"
-    if black >= 50.0 or black >= 30.0 and grey >= 20.0 and brown >= 10.0:
-        return "Mine"
-    if yellow >= 50.0 or yellow >= 30.0 and brown >= 15.0:
+    if yellow >= 35.0 or yellow >= 25.0 and brown >= 5.0:
         return "Mark"
-    if grey >= 50.0 or grey >= 30.0 and brown >= 15.0:
+    if grey >= 30.0 or grey >= 20.0 and brown >= 10.0:
         return "Sump"
+    if dark_green >= 30.0:
+        return "Skov"
+    if black >= 20.0 or black >= 10.0 and grey >= 10.0 and brown >= 10.0:
+        return "Mine"
 
     return "Unknown"
 
