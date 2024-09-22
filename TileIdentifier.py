@@ -61,7 +61,7 @@ def categorize_pixel(r: int, g: int, b: int) -> str:
     color_list = [light_green, dark_green, blue, black, yellow, brown, white, grey]
 
     closest_value = 9999
-    closest_color = (0, 0, 0)
+    closest_color = None
 
     for color_collection in color_list:
 
